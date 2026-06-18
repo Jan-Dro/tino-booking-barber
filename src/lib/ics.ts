@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 type IcsInput = {
   uid: string;
   title: string;
@@ -10,7 +8,10 @@ type IcsInput = {
 };
 
 function toUtcStamp(date: Date) {
-  return format(date, "yyyyMMdd'T'HHmmss'Z'");
+  return date
+    .toISOString()
+    .replace(/[-:]/g, "")
+    .replace(/\.\d{3}Z$/, "Z");
 }
 
 export function generateIcs(input: IcsInput) {

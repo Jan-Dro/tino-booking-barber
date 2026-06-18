@@ -28,7 +28,7 @@ function formatWindow(startsAt: Date, endsAt: Date) {
 
 function getFromAddress() {
   const env = getServerEnv();
-  return env.RESEND_FROM_EMAIL?.trim() || "onboarding@resend.dev";
+  return env.RESEND_FROM_EMAIL?.trim() || "tino@resrva.co";
 }
 
 export async function sendCustomerConfirmationEmail(input: BookingEmailInput) {
