@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { format } from "date-fns";
 import { ServiceCard } from "@/components/booking/ServiceCard";
 import { DatePicker } from "@/components/booking/DatePicker";
@@ -36,6 +36,7 @@ export function BookingForm({ services }: BookingFormProps) {
     customerPhone: "",
     notes: "",
   });
+  const timeSectionRef = useRef<HTMLDivElement | null>(null);
 
   const selectedService = useMemo(
     () => services.find((service) => service.id === serviceId),
@@ -106,6 +107,16 @@ export function BookingForm({ services }: BookingFormProps) {
     }
   }
 
+  function handleServiceSelect(nextServiceId: string) {
+    setServiceId(nextServiceId);
+    setSelectedSlot(null);
+
+    const section = timeSectionRef.current;
+    if (!section) return;
+
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   if (successId) {
     return (
       <Card className="max-w-2xl">
@@ -130,16 +141,14 @@ export function BookingForm({ services }: BookingFormProps) {
                 key={service.id}
                 service={service}
                 selected={service.id === serviceId}
-                onSelect={(nextServiceId) => {
-                  setServiceId(nextServiceId);
-                  setSelectedSlot(null);
-                }}
+                onSelect={handleServiceSelect}
               />
             ))}
           </div>
         </Card>
 
-        <Card>
+        <div ref={timeSectionRef}>
+          <Card>
           <h2 className="text-xl font-semibold text-white">2. Choose date and time</h2>
           <div className="mt-4 space-y-4">
             <DatePicker
@@ -159,7 +168,8 @@ export function BookingForm({ services }: BookingFormProps) {
               />
             )}
           </div>
-        </Card>
+          </Card>
+        </div>
 
         <Card>
           <h2 className="text-xl font-semibold text-white">3. Your details</h2>

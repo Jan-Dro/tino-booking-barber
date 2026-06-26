@@ -52,9 +52,9 @@ with check (auth.role() = 'service_role');
 
 with seed(name, description, duration_minutes, price_cents, active) as (
 	values
-		('Kids Haircut or Fade', 'Kids under 18 regular haircut or fade.', 45, 2500, true),
-		('Men''s Regular Haircut', 'Men''s regular haircut / corte clasico.', 45, 2500, true),
-		('Men Fade', 'Fade / degradado with blend and finish.', 60, 3000, true),
+		('Kids Haircut or Fade', 'Kids under 18 regular haircut or fade.', 30, 2500, true),
+		('Men''s Regular Haircut', 'Men''s regular haircut / corte clasico.', 30, 2500, true),
+		('Men Fade', 'Fade / degradado with blend and finish.', 30, 3000, true),
 		('Beard', 'Beard / barba clean-up add-on.', 15, 500, true)
 )
 update public.services s
@@ -70,9 +70,9 @@ insert into public.services (name, description, duration_minutes, price_cents, a
 select seed.name, seed.description, seed.duration_minutes, seed.price_cents, seed.active
 from (
 	values
-		('Kids Haircut or Fade', 'Kids under 18 regular haircut or fade.', 45, 2500, true),
-		('Men''s Regular Haircut', 'Men''s regular haircut / corte clasico.', 45, 2500, true),
-		('Men Fade', 'Fade / degradado with blend and finish.', 60, 3000, true),
+		('Kids Haircut or Fade', 'Kids under 18 regular haircut or fade.', 30, 2500, true),
+		('Men''s Regular Haircut', 'Men''s regular haircut / corte clasico.', 30, 2500, true),
+		('Men Fade', 'Fade / degradado with blend and finish.', 30, 3000, true),
 		('Beard', 'Beard / barba clean-up add-on.', 15, 500, true)
 ) as seed(name, description, duration_minutes, price_cents, active)
 where not exists (

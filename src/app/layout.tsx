@@ -15,8 +15,8 @@ const display = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Tino Barber | Premium Barber Booking",
-  description: "Book premium barber appointments with real-time Google Calendar availability.",
+  title: "Tino - Barber | Booking",
+  description: "Book today.",
 };
 
 export default function RootLayout({
